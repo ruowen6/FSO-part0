@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: "Add" and "display" new note locally
+    Note right of browser: JS intercepts submit (e.preventDefault())
+    browser->>server:  send POST request to /exampleapp/new_note_spa
+    activate server
+    Note left of server: The new note data is pushed into the notes array
+    Note left of server: No redirect
+    server-->>browser: 201 Created, {"message":"note created"}
+    deactivate server
+
